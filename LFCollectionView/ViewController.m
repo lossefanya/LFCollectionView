@@ -13,7 +13,7 @@
 #import "LFCollectionViewCell.h"
 #import "LFZoomTransition.h"
 
-@interface ViewController () <LFCollectionViewDataSource, LFCollectionViewDelegate, LFZoomTransitionProtocol>
+@interface ViewController () <LFCollectionViewDataSource, LFCollectionViewDelegate, LFZoomTransitionProtocol, UIViewControllerTransitioningDelegate>
 
 @property (nonatomic, weak) LFCollectionView *collectionView;
 
@@ -72,26 +72,37 @@
 	NSLog(@"%lu", (unsigned long)index);
 	
 	//TODO: animate transition
+	
+	DetailViewController *detailViewController = [DetailViewController new];
+	detailViewController.isMapView = self.collectionView.selectedCell.type == LFCollectionViewCellTypeMap;
+	detailViewController.transitioningDelegate = self;
+	[self presentViewController:detailViewController animated:YES completion:nil];
 }
 
 #pragma mark - LFZoomTransitionProtocol
 
 - (UIView *)zoomTransitionView {
 	LFCollectionViewCell *cell = self.collectionView.selectedCell;
-	UIView *viewToReturn = nil;
 	switch (cell.type) {
-		case LFCollectionViewCellTypeImage:
-			viewToReturn = cell.imageView;
+		case LFCollectionViewCellTypeImage:{
+			UIImageView *imageView = [[UIImageView alloc] initWithFrame:[self convertedFrameOfView:cell.imageView]];
+			imageView.image = cell.imageView.image;
+			return imageView;
 			break;
-		case LFCollectionViewCellTypeMap:
-			viewToReturn = cell.mapView;
+		}
+		case LFCollectionViewCellTypeMap:{
+			MKMapView *mapView = [[MKMapView alloc] initWithFrame:[self convertedFrameOfView:cell.mapView]];
+			return mapView;
 			break;
+		}
 		default:
+			return nil;
 			break;
 	}
-	UIView *view = [viewToReturn copy];
-	view.frame = [viewToReturn convertRect:viewToReturn.frame toView:self.view];
-	return view;
+}
+
+- (CGRect)convertedFrameOfView:(UIView *)view {
+	return [view convertRect:view.frame toView:self.view];
 }
 
 #pragma mark - UIViewControllerTransitioningDelegate

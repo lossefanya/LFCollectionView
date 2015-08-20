@@ -3,7 +3,7 @@
 //  LFCollectionView
 //
 //  Created by Young One Park on 2015. 8. 20..
-//  Copyright (c) 2015년 young1park. All rights reserved.
+//  Copyright (c) 2015 young1park. All rights reserved.
 //
 
 #import "LFZoomTransition.h"
@@ -29,10 +29,19 @@
 	UIViewController *fromVC = [transitionContext viewControllerForKey:UITransitionContextFromViewControllerKey];
 	UIViewController *toVC = [transitionContext viewControllerForKey:UITransitionContextToViewControllerKey];
 	UIView *containerView = [transitionContext containerView];
+	[containerView addSubview:fromVC.view];
+	[containerView addSubview:toVC.view];
+	toVC.view.alpha = 0;
+
+	UIView *transitioningView = self.startingTransition.zoomTransitionView;
+	[containerView addSubview:transitioningView];
+	
 	[UIView animateWithDuration:[self transitionDuration:transitionContext] animations:^{
-		
+		fromVC.view.alpha = 0;
+		toVC.view.alpha = 1;
+		transitioningView.frame = self.finishingTransition.zoomTransitionView.frame;
 	} completion:^(BOOL finished) {
-		
+		[transitionContext completeTransition:![transitionContext transitionWasCancelled]];
 	}];
 }
 
