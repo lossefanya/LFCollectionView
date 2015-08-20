@@ -37,6 +37,7 @@
 
 @property (nonatomic, assign) id <LFCollectionViewDelegate> actionDelegate;
 @property (nonatomic, assign) id <LFCollectionViewDataSource> dataSource;
+@property (nonatomic, weak) LFCollectionViewCell *selectedCell;
 
 // reloads everything from scratch. redisplays visible rows.
 - (void)reloadData;

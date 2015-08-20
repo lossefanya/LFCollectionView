@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B1B2E8081B86093D0096657F /* LFZoomTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = B1B2E8071B86093D0096657F /* LFZoomTransition.m */; };
+		B1B2E80B1B8612310096657F /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B1B2E80A1B8612310096657F /* DetailViewController.m */; };
 		B1FD65C81B85393100B4A068 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B1FD65C71B85393100B4A068 /* main.m */; };
 		B1FD65CB1B85393100B4A068 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B1FD65CA1B85393100B4A068 /* AppDelegate.m */; };
 		B1FD65CE1B85393100B4A068 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B1FD65CD1B85393100B4A068 /* ViewController.m */; };
@@ -31,6 +33,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		B1B2E8061B86093D0096657F /* LFZoomTransition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LFZoomTransition.h; path = LFZoomTransition/LFZoomTransition.h; sourceTree = "<group>"; };
+		B1B2E8071B86093D0096657F /* LFZoomTransition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LFZoomTransition.m; path = LFZoomTransition/LFZoomTransition.m; sourceTree = "<group>"; };
+		B1B2E8091B8612310096657F /* DetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailViewController.h; sourceTree = "<group>"; };
+		B1B2E80A1B8612310096657F /* DetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailViewController.m; sourceTree = "<group>"; };
 		B1FD65C21B85393100B4A068 /* LFCollectionView.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LFCollectionView.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B1FD65C61B85393100B4A068 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B1FD65C71B85393100B4A068 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -71,6 +77,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		B1B2E8051B86090A0096657F /* LFZoomTransition */ = {
+			isa = PBXGroup;
+			children = (
+				B1B2E8061B86093D0096657F /* LFZoomTransition.h */,
+				B1B2E8071B86093D0096657F /* LFZoomTransition.m */,
+			);
+			name = LFZoomTransition;
+			sourceTree = "<group>";
+		};
 		B1FD65B91B85393100B4A068 = {
 			isa = PBXGroup;
 			children = (
@@ -93,6 +108,7 @@
 		B1FD65C41B85393100B4A068 /* LFCollectionView */ = {
 			isa = PBXGroup;
 			children = (
+				B1B2E8051B86090A0096657F /* LFZoomTransition */,
 				B1FD65EC1B85395E00B4A068 /* TestBed */,
 				B1FD65EB1B85395000B4A068 /* LFCollectionView */,
 				B1FD65C51B85393100B4A068 /* Supporting Files */,
@@ -145,6 +161,8 @@
 				B1FD65CA1B85393100B4A068 /* AppDelegate.m */,
 				B1FD65CC1B85393100B4A068 /* ViewController.h */,
 				B1FD65CD1B85393100B4A068 /* ViewController.m */,
+				B1B2E8091B8612310096657F /* DetailViewController.h */,
+				B1B2E80A1B8612310096657F /* DetailViewController.m */,
 				B1FD65CF1B85393100B4A068 /* Main.storyboard */,
 				B1FD65D21B85393100B4A068 /* Images.xcassets */,
 				B1FD65D41B85393100B4A068 /* LaunchScreen.xib */,
@@ -256,8 +274,10 @@
 				B1FD65CE1B85393100B4A068 /* ViewController.m in Sources */,
 				B1FD65CB1B85393100B4A068 /* AppDelegate.m in Sources */,
 				B1FD65EF1B8539C200B4A068 /* LFCollectionView.m in Sources */,
+				B1B2E8081B86093D0096657F /* LFZoomTransition.m in Sources */,
 				B1FD65F21B8539DC00B4A068 /* LFCollectionViewCell.m in Sources */,
 				B1FD65C81B85393100B4A068 /* main.m in Sources */,
+				B1B2E80B1B8612310096657F /* DetailViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -452,6 +472,7 @@
 				B1FD65E71B85393200B4A068 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		B1FD65E81B85393200B4A068 /* Build configuration list for PBXNativeTarget "LFCollectionViewTests" */ = {
 			isa = XCConfigurationList;
@@ -460,6 +481,7 @@
 				B1FD65EA1B85393200B4A068 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

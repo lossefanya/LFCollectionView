@@ -13,6 +13,7 @@
 + (LFCollectionViewCell *)cellWithType:(LFCollectionViewCellType)type {
 	NSString *className = NSStringFromClass([self class]);
 	LFCollectionViewCell *cell = [[[NSBundle mainBundle] loadNibNamed:className owner:nil options:nil] firstObject];
+	cell.type = type;
 	switch (type) {
 		case LFCollectionViewCellTypeImage:
 			cell.mapView.hidden = YES;

@@ -7,10 +7,13 @@
 //
 
 #import "ViewController.h"
+#import "DetailViewController.h"
+
 #import "LFCollectionView.h"
 #import "LFCollectionViewCell.h"
+#import "LFZoomTransition.h"
 
-@interface ViewController () <LFCollectionViewDataSource, LFCollectionViewDelegate>
+@interface ViewController () <LFCollectionViewDataSource, LFCollectionViewDelegate, LFZoomTransitionProtocol>
 
 @property (nonatomic, weak) LFCollectionView *collectionView;
 
@@ -41,7 +44,7 @@
 
 - (LFCollectionViewCell *)collectionView:(LFCollectionView *)collectionView cellForItemAtIndex:(NSUInteger)index {
 	NSArray *cellIDs = @[@"ImageCell", @"MapCell"];
-	LFCollectionViewCellType type = index % 2 == 0;
+	LFCollectionViewCellType type = index % 5 == 0;
 	NSString *cellID = cellIDs[type];
 	LFCollectionViewCell *cell = [collectionView dequeueReusableCellWithIdentifier:cellID];
 	if (!cell) {
@@ -66,7 +69,41 @@
 #pragma mark - LFCollectionViewDelegate
 
 - (void)collectionView:(LFCollectionView *)collectionView didSelectItemAtIndex:(NSUInteger)index {
-	NSLog(@"%d", index);
+	NSLog(@"%lu", (unsigned long)index);
+	
+	//TODO: animate transition
+}
+
+#pragma mark - LFZoomTransitionProtocol
+
+- (UIView *)zoomTransitionView {
+	LFCollectionViewCell *cell = self.collectionView.selectedCell;
+	UIView *viewToReturn = nil;
+	switch (cell.type) {
+		case LFCollectionViewCellTypeImage:
+			viewToReturn = cell.imageView;
+			break;
+		case LFCollectionViewCellTypeMap:
+			viewToReturn = cell.mapView;
+			break;
+		default:
+			break;
+	}
+	UIView *view = [viewToReturn copy];
+	view.frame = [viewToReturn convertRect:viewToReturn.frame toView:self.view];
+	return view;
+}
+
+#pragma mark - UIViewControllerTransitioningDelegate
+
+- (id <UIViewControllerAnimatedTransitioning>)animationControllerForPresentedController:(UIViewController *)presented
+																  presentingController:(UIViewController *)presenting
+																	  sourceController:(UIViewController *)source {
+	return [LFZoomTransition zoomTransitionWithStart:source finish:presented];
+}
+
+- (id <UIViewControllerAnimatedTransitioning>)animationControllerForDismissedController:(UIViewController *)dismissed {
+	return [LFZoomTransition zoomTransitionWithStart:dismissed finish:self];
 }
 
 @end

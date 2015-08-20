@@ -92,7 +92,7 @@
 		last = [self.dataSource numberOfItemsInCollectionView:self];
 	}
 	for (NSUInteger i = first; i < last; i++) {
-		LFCollectionViewCell *cell = [self cellOfPosition:[self positionOfIndex:i]];
+		LFCollectionViewCell *cell = [self cellOfIndex:i];
 		if (!cell) {
 			LFCollectionViewCell *newCell = [self.dataSource collectionView:self cellForItemAtIndex:i];
 			newCell.frame = CGRectMake(0, [self positionOfIndex:i], self.frame.size.width, [self.dataSource collectionView:self heightForItemAtIndex:i]);
@@ -101,6 +101,10 @@
 		}
 	}
 	
+}
+
+- (LFCollectionViewCell *)cellOfIndex:(NSUInteger)index {
+	return [self cellOfPosition:[self positionOfIndex:index]];
 }
 
 - (LFCollectionViewCell *)cellOfPosition:(CGFloat)y {
@@ -159,8 +163,11 @@
 	CGPoint location = [tap locationInView:self];
 	NSInteger index = [self indexOfPosition:location.y];
 	if (index != NSUIntegerMax) {
+		self.selectedCell = [self cellOfIndex:index];
 		[self.actionDelegate collectionView:self didSelectItemAtIndex:index];
 	}
 }
+
+//add remove move transition
 
 @end
