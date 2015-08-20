@@ -16,6 +16,8 @@
 		B1FD65E21B85393200B4A068 /* LFCollectionViewTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B1FD65E11B85393200B4A068 /* LFCollectionViewTests.m */; };
 		B1FD65EF1B8539C200B4A068 /* LFCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = B1FD65EE1B8539C200B4A068 /* LFCollectionView.m */; };
 		B1FD65F21B8539DC00B4A068 /* LFCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B1FD65F11B8539DC00B4A068 /* LFCollectionViewCell.m */; };
+		B1FD65F41B85CE9E00B4A068 /* LFCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B1FD65F31B85CE9E00B4A068 /* LFCollectionViewCell.xib */; };
+		B1FD65F61B85D09D00B4A068 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1FD65F51B85D09D00B4A068 /* MapKit.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -46,6 +48,8 @@
 		B1FD65EE1B8539C200B4A068 /* LFCollectionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LFCollectionView.m; path = LFCollectionView/LFCollectionView.m; sourceTree = "<group>"; };
 		B1FD65F01B8539DC00B4A068 /* LFCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LFCollectionViewCell.h; path = LFCollectionView/LFCollectionViewCell.h; sourceTree = "<group>"; };
 		B1FD65F11B8539DC00B4A068 /* LFCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LFCollectionViewCell.m; path = LFCollectionView/LFCollectionViewCell.m; sourceTree = "<group>"; };
+		B1FD65F31B85CE9E00B4A068 /* LFCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = LFCollectionViewCell.xib; path = LFCollectionView/LFCollectionViewCell.xib; sourceTree = "<group>"; };
+		B1FD65F51B85D09D00B4A068 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -53,6 +57,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B1FD65F61B85D09D00B4A068 /* MapKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -69,6 +74,7 @@
 		B1FD65B91B85393100B4A068 = {
 			isa = PBXGroup;
 			children = (
+				B1FD65F51B85D09D00B4A068 /* MapKit.framework */,
 				B1FD65C41B85393100B4A068 /* LFCollectionView */,
 				B1FD65DE1B85393200B4A068 /* LFCollectionViewTests */,
 				B1FD65C31B85393100B4A068 /* Products */,
@@ -127,6 +133,7 @@
 				B1FD65EE1B8539C200B4A068 /* LFCollectionView.m */,
 				B1FD65F01B8539DC00B4A068 /* LFCollectionViewCell.h */,
 				B1FD65F11B8539DC00B4A068 /* LFCollectionViewCell.m */,
+				B1FD65F31B85CE9E00B4A068 /* LFCollectionViewCell.xib */,
 			);
 			name = LFCollectionView;
 			sourceTree = "<group>";
@@ -227,6 +234,7 @@
 			files = (
 				B1FD65D11B85393100B4A068 /* Main.storyboard in Resources */,
 				B1FD65D61B85393100B4A068 /* LaunchScreen.xib in Resources */,
+				B1FD65F41B85CE9E00B4A068 /* LFCollectionViewCell.xib in Resources */,
 				B1FD65D31B85393100B4A068 /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

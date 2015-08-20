@@ -10,12 +10,20 @@
 
 @implementation LFCollectionViewCell
 
-/*
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
-- (void)drawRect:(CGRect)rect {
-    // Drawing code
++ (LFCollectionViewCell *)cellWithType:(LFCollectionViewCellType)type {
+	NSString *className = NSStringFromClass([self class]);
+	LFCollectionViewCell *cell = [[[NSBundle mainBundle] loadNibNamed:className owner:nil options:nil] firstObject];
+	switch (type) {
+		case LFCollectionViewCellTypeImage:
+			cell.mapView.hidden = YES;
+			break;
+		case LFCollectionViewCellTypeMap:
+			cell.imageView.hidden = YES;
+			break;
+		default:
+			break;
+	}
+	return cell;
 }
-*/
 
 @end
