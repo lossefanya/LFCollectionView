@@ -23,7 +23,6 @@
 	LFCollectionView *collectionView = [[LFCollectionView alloc] initWithFrame:[UIScreen mainScreen].bounds];
 	collectionView.dataSource = self;
 	collectionView.actionDelegate = self;
-	[collectionView reloadData];
 	[self.view addSubview:collectionView];
 	self.collectionView = collectionView;
 }
@@ -31,6 +30,7 @@
 - (void)didReceiveMemoryWarning {
 	[super didReceiveMemoryWarning];
 	// Dispose of any resources that can be recreated.
+//	UITableView
 }
 
 #pragma mark - LFCollectionViewDataSource

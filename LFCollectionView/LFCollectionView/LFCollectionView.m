@@ -41,6 +41,7 @@
 }
 
 - (void)initialize {
+	self.contentSize = CGSizeZero;
 	self.usingCells = [NSMutableSet set];
 	self.reusableCells = [NSMutableSet set];
 	UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(didSelectCell:)];
@@ -69,6 +70,10 @@
 }
 
 - (void)layoutSubviews {
+	if (self.contentSize.height == 0) {
+		[self reloadData];
+	}
+	
 	//Q
 	[self.usingCells enumerateObjectsUsingBlock:^(LFCollectionViewCell *cell, BOOL *stop) {
 		CGRect area = CGRectMake(0, CGRectGetMinY(self.bounds) - CGRectGetHeight(self.bounds) * .5f, CGRectGetWidth(self.bounds), CGRectGetHeight(self.bounds) * 1.6f);
@@ -86,7 +91,7 @@
 	if (last == NSUIntegerMax) {
 		last = [self.dataSource numberOfItemsInCollectionView:self];
 	}
-	for (NSUInteger i = first; i < last; ++i) {
+	for (NSUInteger i = first; i < last; i++) {
 		LFCollectionViewCell *cell = [self cellOfPosition:[self positionOfIndex:i]];
 		if (!cell) {
 			LFCollectionViewCell *newCell = [self.dataSource collectionView:self cellForItemAtIndex:i];

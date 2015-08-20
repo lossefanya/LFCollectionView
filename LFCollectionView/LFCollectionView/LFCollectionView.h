@@ -11,9 +11,10 @@
 @class LFCollectionView;
 @class LFCollectionViewCell;
 
-@protocol LFCollectionViewDelegate <UIScrollViewDelegate>
+@protocol LFCollectionViewDelegate <NSObject>
 @optional
 
+// Called after the user tap a cell.
 - (void)collectionView:(LFCollectionView *)collectionView didSelectItemAtIndex:(NSUInteger)index;
 
 @end
@@ -21,8 +22,13 @@
 @protocol LFCollectionViewDataSource <NSObject>
 @required
 
+// Called to find out number of items.
 - (NSInteger)numberOfItemsInCollectionView:(LFCollectionView *)collectionView;
-- (LFCollectionViewCell *)collectionView:(LFCollectionView *)collectionView cellForItemAtIndex:(NSUInteger)index;
+
+// Called to display details of the cell. Should dequeue or generate a cell here.
+- (LFCollectionViewCell *)collectionView:(LFCollectionView *)collectionView cellForItemAtIndex:(NSUInteger)index;\
+
+// Called to find out height of each cell. You can set variable height for each cells.
 - (CGFloat)collectionView:(LFCollectionView *)collectionView heightForItemAtIndex:(NSUInteger)index;
 
 @end
@@ -32,7 +38,10 @@
 @property (nonatomic, assign) id <LFCollectionViewDelegate> actionDelegate;
 @property (nonatomic, assign) id <LFCollectionViewDataSource> dataSource;
 
+// reloads everything from scratch. redisplays visible rows.
 - (void)reloadData;
+
+// Used by the delegate to acquire an already allocated cell.
 - (LFCollectionViewCell *)dequeueReusableCellWithIdentifier:(NSString *)identifier;
 
 @end
