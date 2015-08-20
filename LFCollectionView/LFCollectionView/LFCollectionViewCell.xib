@@ -6,9 +6,17 @@
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="LFCollectionViewCell">
+            <connections>
+                <outlet property="contentView" destination="21p-fL-Dfs" id="1yW-wR-ItZ"/>
+                <outlet property="detailTextLabel" destination="K4U-dT-pmp" id="1V8-SI-flF"/>
+                <outlet property="imageView" destination="hbG-IE-4xY" id="7vR-z9-SHd"/>
+                <outlet property="mapView" destination="l1l-k1-spW" id="yqV-Kk-eEe"/>
+                <outlet property="textLabel" destination="oee-jZ-nvm" id="pwj-eP-t2R"/>
+            </connections>
+        </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <view contentMode="scaleToFill" id="21p-fL-Dfs" customClass="LFCollectionViewCell">
+        <view contentMode="scaleToFill" id="21p-fL-Dfs">
             <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
@@ -54,12 +62,6 @@
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-            <connections>
-                <outlet property="detailTextLabel" destination="K4U-dT-pmp" id="zS9-b7-W46"/>
-                <outlet property="imageView" destination="hbG-IE-4xY" id="k4D-aX-itd"/>
-                <outlet property="mapView" destination="l1l-k1-spW" id="gQm-ao-KnE"/>
-                <outlet property="textLabel" destination="oee-jZ-nvm" id="tw2-gp-Z3S"/>
-            </connections>
             <point key="canvasLocation" x="608.5" y="360"/>
         </view>
     </objects>
