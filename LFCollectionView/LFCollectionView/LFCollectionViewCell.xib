@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7706" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
+        <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
     </dependencies>
     <objects>
@@ -23,16 +24,16 @@
                         <constraint firstAttribute="width" secondItem="hbG-IE-4xY" secondAttribute="height" multiplier="1:1" id="oGW-9j-hPd"/>
                     </constraints>
                 </imageView>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oee-jZ-nvm">
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oee-jZ-nvm">
                     <rect key="frame" x="52" y="0.0" width="315" height="21"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="K4U-dT-pmp">
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="K4U-dT-pmp">
                     <rect key="frame" x="52" y="23" width="315" height="21"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
             </subviews>
@@ -42,8 +43,8 @@
                 <constraint firstItem="l1l-k1-spW" firstAttribute="leading" secondItem="21p-fL-Dfs" secondAttribute="leading" id="HWu-p7-AiQ"/>
                 <constraint firstAttribute="bottom" secondItem="hbG-IE-4xY" secondAttribute="bottom" id="QdO-ZJ-cbp"/>
                 <constraint firstItem="hbG-IE-4xY" firstAttribute="top" secondItem="21p-fL-Dfs" secondAttribute="top" id="WVY-Yh-dpG"/>
-                <constraint firstAttribute="centerY" secondItem="oee-jZ-nvm" secondAttribute="centerY" constant="11" id="bYf-3o-csh"/>
-                <constraint firstAttribute="centerY" secondItem="K4U-dT-pmp" secondAttribute="centerY" constant="-11" id="dZ6-yI-faL"/>
+                <constraint firstAttribute="centerY" secondItem="oee-jZ-nvm" secondAttribute="bottom" constant="1" id="bYf-3o-csh"/>
+                <constraint firstAttribute="centerY" secondItem="K4U-dT-pmp" secondAttribute="top" constant="-1" id="dZ6-yI-faL"/>
                 <constraint firstItem="l1l-k1-spW" firstAttribute="top" secondItem="21p-fL-Dfs" secondAttribute="top" id="dmI-nT-QzF"/>
                 <constraint firstItem="K4U-dT-pmp" firstAttribute="leading" secondItem="hbG-IE-4xY" secondAttribute="trailing" constant="8" id="dw5-kd-B3V"/>
                 <constraint firstAttribute="trailing" secondItem="K4U-dT-pmp" secondAttribute="trailing" constant="8" id="eLJ-8j-oF8"/>

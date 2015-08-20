@@ -108,8 +108,8 @@
 		B1FD65C41B85393100B4A068 /* LFCollectionView */ = {
 			isa = PBXGroup;
 			children = (
-				B1B2E8051B86090A0096657F /* LFZoomTransition */,
 				B1FD65EC1B85395E00B4A068 /* TestBed */,
+				B1B2E8051B86090A0096657F /* LFZoomTransition */,
 				B1FD65EB1B85395000B4A068 /* LFCollectionView */,
 				B1FD65C51B85393100B4A068 /* Supporting Files */,
 			);
