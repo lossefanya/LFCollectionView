@@ -14,6 +14,8 @@
 		B1FD65D31B85393100B4A068 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B1FD65D21B85393100B4A068 /* Images.xcassets */; };
 		B1FD65D61B85393100B4A068 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = B1FD65D41B85393100B4A068 /* LaunchScreen.xib */; };
 		B1FD65E21B85393200B4A068 /* LFCollectionViewTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B1FD65E11B85393200B4A068 /* LFCollectionViewTests.m */; };
+		B1FD65EF1B8539C200B4A068 /* LFCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = B1FD65EE1B8539C200B4A068 /* LFCollectionView.m */; };
+		B1FD65F21B8539DC00B4A068 /* LFCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B1FD65F11B8539DC00B4A068 /* LFCollectionViewCell.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -40,6 +42,10 @@
 		B1FD65DB1B85393200B4A068 /* LFCollectionViewTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LFCollectionViewTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B1FD65E01B85393200B4A068 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B1FD65E11B85393200B4A068 /* LFCollectionViewTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LFCollectionViewTests.m; sourceTree = "<group>"; };
+		B1FD65ED1B8539C200B4A068 /* LFCollectionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LFCollectionView.h; path = LFCollectionView/LFCollectionView.h; sourceTree = "<group>"; };
+		B1FD65EE1B8539C200B4A068 /* LFCollectionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LFCollectionView.m; path = LFCollectionView/LFCollectionView.m; sourceTree = "<group>"; };
+		B1FD65F01B8539DC00B4A068 /* LFCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LFCollectionViewCell.h; path = LFCollectionView/LFCollectionViewCell.h; sourceTree = "<group>"; };
+		B1FD65F11B8539DC00B4A068 /* LFCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LFCollectionViewCell.m; path = LFCollectionView/LFCollectionViewCell.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -81,13 +87,8 @@
 		B1FD65C41B85393100B4A068 /* LFCollectionView */ = {
 			isa = PBXGroup;
 			children = (
-				B1FD65C91B85393100B4A068 /* AppDelegate.h */,
-				B1FD65CA1B85393100B4A068 /* AppDelegate.m */,
-				B1FD65CC1B85393100B4A068 /* ViewController.h */,
-				B1FD65CD1B85393100B4A068 /* ViewController.m */,
-				B1FD65CF1B85393100B4A068 /* Main.storyboard */,
-				B1FD65D21B85393100B4A068 /* Images.xcassets */,
-				B1FD65D41B85393100B4A068 /* LaunchScreen.xib */,
+				B1FD65EC1B85395E00B4A068 /* TestBed */,
+				B1FD65EB1B85395000B4A068 /* LFCollectionView */,
 				B1FD65C51B85393100B4A068 /* Supporting Files */,
 			);
 			path = LFCollectionView;
@@ -117,6 +118,31 @@
 				B1FD65E01B85393200B4A068 /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		B1FD65EB1B85395000B4A068 /* LFCollectionView */ = {
+			isa = PBXGroup;
+			children = (
+				B1FD65ED1B8539C200B4A068 /* LFCollectionView.h */,
+				B1FD65EE1B8539C200B4A068 /* LFCollectionView.m */,
+				B1FD65F01B8539DC00B4A068 /* LFCollectionViewCell.h */,
+				B1FD65F11B8539DC00B4A068 /* LFCollectionViewCell.m */,
+			);
+			name = LFCollectionView;
+			sourceTree = "<group>";
+		};
+		B1FD65EC1B85395E00B4A068 /* TestBed */ = {
+			isa = PBXGroup;
+			children = (
+				B1FD65C91B85393100B4A068 /* AppDelegate.h */,
+				B1FD65CA1B85393100B4A068 /* AppDelegate.m */,
+				B1FD65CC1B85393100B4A068 /* ViewController.h */,
+				B1FD65CD1B85393100B4A068 /* ViewController.m */,
+				B1FD65CF1B85393100B4A068 /* Main.storyboard */,
+				B1FD65D21B85393100B4A068 /* Images.xcassets */,
+				B1FD65D41B85393100B4A068 /* LaunchScreen.xib */,
+			);
+			name = TestBed;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -221,6 +247,8 @@
 			files = (
 				B1FD65CE1B85393100B4A068 /* ViewController.m in Sources */,
 				B1FD65CB1B85393100B4A068 /* AppDelegate.m in Sources */,
+				B1FD65EF1B8539C200B4A068 /* LFCollectionView.m in Sources */,
+				B1FD65F21B8539DC00B4A068 /* LFCollectionViewCell.m in Sources */,
 				B1FD65C81B85393100B4A068 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

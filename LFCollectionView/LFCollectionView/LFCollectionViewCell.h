@@ -1,5 +1,5 @@
 //
-//  ViewController.h
+//  LFCollectionViewCell.h
 //  LFCollectionView
 //
 //  Created by Young One Park on 2015. 8. 20..
@@ -8,8 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ViewController : UIViewController
-
+@interface LFCollectionViewCell : UIView
 
 @end
-

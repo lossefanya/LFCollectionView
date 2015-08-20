@@ -3,7 +3,7 @@
 //  LFCollectionView
 //
 //  Created by Young One Park on 2015. 8. 20..
-//  Copyright (c) 2015년 young1park. All rights reserved.
+//  Copyright (c) 2015 young1park. All rights reserved.
 //
 
 #import "ViewController.h"
@@ -17,6 +17,8 @@
 - (void)viewDidLoad {
 	[super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
+	
+//	UICollectionView
 }
 
 - (void)didReceiveMemoryWarning {
