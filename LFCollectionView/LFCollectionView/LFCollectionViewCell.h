@@ -22,6 +22,11 @@ typedef NS_ENUM(NSUInteger, LFCollectionViewCellType) {
 @property (nonatomic, weak) IBOutlet UILabel *textLabel;
 @property (nonatomic, weak) IBOutlet UILabel *detailTextLabel;
 
+/**
+ The cell should be initialized using this class method. This will get LFCollectionViewCellType as a parameter.
+ LFCollectionViewCellTypeImage : This type of cell have a image view on left.
+ LFCollectionViewCellTypeMap : This type of cell have a map view on left.
+ */
 + (LFCollectionViewCell *)cellWithType:(LFCollectionViewCellType)type;
 
 @end
