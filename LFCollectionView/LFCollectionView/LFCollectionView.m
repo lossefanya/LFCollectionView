@@ -181,14 +181,8 @@
 	NSUInteger index = [self indexOfPosition:CGRectGetMidY(cell.frame)];
 	if (index != NSUIntegerMax && [self.actionDelegate respondsToSelector:@selector(collectionView:didDeleteItemAtIndex:)]) {
 		[self.actionDelegate collectionView:self didDeleteItemAtIndex:index];
-		[self refreshContentSize];
-		
-		//Q, remove
-		[self queueReusableCell:cell];
-		[self.usingCells minusSet:self.reusableCells];
-		[cell removeFromSuperview];
 		[self reloadData];
-
+		//TODO: animate
 	}
 }
 
