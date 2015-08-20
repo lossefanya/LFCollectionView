@@ -36,7 +36,7 @@
 #pragma mark - LFCollectionViewDataSource
 
 - (NSInteger)numberOfItemsInCollectionView:(LFCollectionView *)collectionView {
-	return 20;
+	return 50;
 }
 
 - (LFCollectionViewCell *)collectionView:(LFCollectionView *)collectionView cellForItemAtIndex:(NSUInteger)index {

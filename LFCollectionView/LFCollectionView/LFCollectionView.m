@@ -70,7 +70,8 @@
 - (void)layoutSubviews {
 	//Q
 	[self.usingCells enumerateObjectsUsingBlock:^(LFCollectionViewCell *cell, BOOL *stop) {
-		if (!CGRectIntersectsRect(cell.frame, self.bounds)) {
+		CGRect area = CGRectMake(0, CGRectGetMinY(self.bounds) - CGRectGetHeight(self.bounds) * .6f, CGRectGetWidth(self.bounds), CGRectGetHeight(self.bounds) * 2);
+		if (!CGRectIntersectsRect(cell.frame, area)) {
 			[self queueReusableCell:cell];
 			[cell removeFromSuperview];
 		}
@@ -80,13 +81,13 @@
 	//DQ
 	//find out index
 	NSUInteger first = [self indexOfPosition:CGRectGetMinY(self.bounds)];
-	NSUInteger last = [self indexOfPosition:CGRectGetMaxY(self.bounds) - 1];
+	NSUInteger last = [self indexOfPosition:CGRectGetMaxY(self.bounds) + CGRectGetHeight(self.bounds) * .4f];
 	for (NSUInteger i = first; i < last; ++i) {
 		LFCollectionViewCell *cell = [self cellOfPosition:[self positionOfIndex:i]];
 		if (!cell) {
 			LFCollectionViewCell *newCell = [self.dataSource collectionView:self cellForItemAtIndex:i];
 			newCell.frame = CGRectMake(0, [self positionOfIndex:i], self.frame.size.width, [self.dataSource collectionView:self heightForItemAtIndex:i]);
-			[self addSubview:newCell];
+			[self insertSubview:newCell atIndex:self.usingCells.count];
 			[self.usingCells addObject:newCell];
 		}
 	}
