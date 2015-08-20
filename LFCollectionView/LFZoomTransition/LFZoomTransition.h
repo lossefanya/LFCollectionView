@@ -20,8 +20,14 @@
 
 @property (nonatomic, weak) id <LFZoomTransitionProtocol> startingTransition;
 @property (nonatomic, weak) id <LFZoomTransitionProtocol> finishingTransition;
-@property (nonatomic, strong) UIColor *backgroundColor;
+@property (nonatomic, strong) UIColor *backgroundColor;//background color while transition
 
+/**
+ Implement UIViewControllerTransitioningDelegate.
+ Then, return an instance of this class in each of delegate method.
+ Set view controllers as start and finish.
+ Each view controllers should implement LFZoomTransitionProtocol.
+ */
 + (LFZoomTransition *)zoomTransitionWithStart:(id)start finish:(id)finish;
 
 @end

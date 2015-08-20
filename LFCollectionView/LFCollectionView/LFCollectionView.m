@@ -162,12 +162,23 @@
 - (void)didSelectCell:(UITapGestureRecognizer *)tap {
 	CGPoint location = [tap locationInView:self];
 	NSInteger index = [self indexOfPosition:location.y];
-	if (index != NSUIntegerMax) {
+	if (index != NSUIntegerMax && [self.actionDelegate respondsToSelector:@selector(collectionView:didSelectItemAtIndex:)]) {
 		self.selectedCell = [self cellOfIndex:index];
 		[self.actionDelegate collectionView:self didSelectItemAtIndex:index];
 	}
 }
 
-//add remove move transition
+- (void)deleteCell:(LFCollectionViewCell *)cell {
+	NSUInteger index = [self indexOfPosition:CGRectGetMidY(cell.frame)];
+	if (self.selectedCell == cell) {
+		self.selectedCell = nil;
+	}
+	if (index != NSUIntegerMax && [self.actionDelegate respondsToSelector:@selector(collectionView:didDeleteItemAtIndex:)]) {
+		//TODO: remove animation
+		
+		
+		[self.actionDelegate collectionView:self didDeleteItemAtIndex:index];
+	}
+}
 
 @end

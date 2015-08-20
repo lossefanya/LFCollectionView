@@ -7,6 +7,7 @@
 //
 
 #import "LFCollectionViewCell.h"
+#import "LFCollectionView.h"
 
 #define DELETE_BUTTON_WIDTH 75
 
@@ -22,6 +23,8 @@
 	UIButton *deleteButton = [UIButton new];
 	[deleteButton setTitle:@"DELETE" forState:UIControlStateNormal];
 	[deleteButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+	[deleteButton setTitleColor:[UIColor lightGrayColor] forState:UIControlStateHighlighted];
+	[deleteButton addTarget:cell action:@selector(delete:) forControlEvents:UIControlEventTouchUpInside];
 	deleteButton.backgroundColor = [UIColor redColor];
 	[cell insertSubview:deleteButton belowSubview:cell.contentView];
 	cell.deleteButton = deleteButton;
@@ -80,6 +83,13 @@
 			self.contentView.frame = CGRectOffset(self.contentView.frame, DELETE_BUTTON_WIDTH, 0);
 		}
 	}];
+}
+
+- (void)delete:(UIButton *)sender {
+	id parent = self.superview;
+	if ([parent isKindOfClass:[LFCollectionView class]] && [parent respondsToSelector:@selector(deleteCell:)]) {
+		[parent performSelector:@selector(deleteCell:) withObject:self];
+	}
 }
 
 @end

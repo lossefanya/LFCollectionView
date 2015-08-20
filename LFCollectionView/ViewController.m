@@ -75,6 +75,10 @@
 	[self presentViewController:detailViewController animated:YES completion:nil];
 }
 
+- (void)collectionView:(LFCollectionView *)collectionView didDeleteItemAtIndex:(NSUInteger)index {
+	
+}
+
 #pragma mark - LFZoomTransitionProtocol
 
 - (UIView *)zoomTransitionView {

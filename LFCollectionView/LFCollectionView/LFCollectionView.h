@@ -17,6 +17,9 @@
 // Called after the user tap a cell.
 - (void)collectionView:(LFCollectionView *)collectionView didSelectItemAtIndex:(NSUInteger)index;
 
+// Called after the user tap the delete button of cell. manipulate data according to this action
+- (void)collectionView:(LFCollectionView *)collectionView didDeleteItemAtIndex:(NSUInteger)index;
+
 @end
 
 @protocol LFCollectionViewDataSource <NSObject>
@@ -44,5 +47,9 @@
 
 // Used by the delegate to acquire an already allocated cell.
 - (LFCollectionViewCell *)dequeueReusableCellWithIdentifier:(NSString *)identifier;
+
+
+// Called when the user touches delete button.
+- (void)deleteCell:(LFCollectionViewCell *)cell;
 
 @end
