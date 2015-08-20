@@ -51,13 +51,7 @@
 #pragma mark - Populate cells
 
 - (void)reloadData {
-	//calculate content size
-	NSInteger number = [self.dataSource numberOfItemsInCollectionView:self];
-	CGFloat height = 0;
-	for (NSUInteger i = 0; i < number; i++) {
-		height += [self.dataSource collectionView:self heightForItemAtIndex:i];
-	}
-	self.contentSize = CGSizeMake(self.frame.size.width, height);
+	[self refreshContentSize];
 
 	//Q
 	[self.usingCells enumerateObjectsUsingBlock:^(LFCollectionViewCell *cell, BOOL *stop) {
@@ -69,9 +63,20 @@
 	[self setNeedsLayout];
 }
 
+- (void)refreshContentSize {
+	NSInteger number = [self.dataSource numberOfItemsInCollectionView:self];
+	CGFloat height = 0;
+	for (NSUInteger i = 0; i < number; i++) {
+		height += [self.dataSource collectionView:self heightForItemAtIndex:i];
+	}
+	self.contentSize = CGSizeMake(self.frame.size.width, height);
+}
+
 - (void)layoutSubviews {
+	NSLog(@"layoutSubviews");
+	
 	if (self.contentSize.height == 0) {
-		[self reloadData];
+		[self refreshContentSize];
 	}
 	
 	//Q
@@ -94,11 +99,11 @@
 	for (NSUInteger i = first; i < last; i++) {
 		LFCollectionViewCell *cell = [self cellOfIndex:i];
 		if (!cell) {
-			LFCollectionViewCell *newCell = [self.dataSource collectionView:self cellForItemAtIndex:i];
-			newCell.frame = CGRectMake(0, [self positionOfIndex:i], self.frame.size.width, [self.dataSource collectionView:self heightForItemAtIndex:i]);
-			[self insertSubview:newCell atIndex:self.usingCells.count];
-			[self.usingCells addObject:newCell];
+			cell = [self.dataSource collectionView:self cellForItemAtIndex:i];
+			[self insertSubview:cell atIndex:self.usingCells.count];
+			[self.usingCells addObject:cell];
 		}
+		cell.frame = CGRectMake(0, [self positionOfIndex:i], self.frame.size.width, [self.dataSource collectionView:self heightForItemAtIndex:i]);
 	}
 	
 }
@@ -157,7 +162,7 @@
 	return cell;
 }
 
-#pragma mark - Handling selection
+#pragma mark - Action handlers
 
 - (void)didSelectCell:(UITapGestureRecognizer *)tap {
 	CGPoint location = [tap locationInView:self];
@@ -169,15 +174,21 @@
 }
 
 - (void)deleteCell:(LFCollectionViewCell *)cell {
-	NSUInteger index = [self indexOfPosition:CGRectGetMidY(cell.frame)];
 	if (self.selectedCell == cell) {
 		self.selectedCell = nil;
 	}
+	
+	NSUInteger index = [self indexOfPosition:CGRectGetMidY(cell.frame)];
 	if (index != NSUIntegerMax && [self.actionDelegate respondsToSelector:@selector(collectionView:didDeleteItemAtIndex:)]) {
-		//TODO: remove animation
-		
-		
 		[self.actionDelegate collectionView:self didDeleteItemAtIndex:index];
+		[self refreshContentSize];
+		
+		//Q, remove
+		[self queueReusableCell:cell];
+		[self.usingCells minusSet:self.reusableCells];
+		[cell removeFromSuperview];
+		[self reloadData];
+
 	}
 }
 

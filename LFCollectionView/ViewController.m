@@ -8,6 +8,7 @@
 
 #import "ViewController.h"
 #import "DetailViewController.h"
+#import "SampleData.h"
 
 #import "LFCollectionView.h"
 #import "LFCollectionViewCell.h"
@@ -16,6 +17,7 @@
 @interface ViewController () <LFCollectionViewDataSource, LFCollectionViewDelegate, LFZoomTransitionProtocol, UIViewControllerTransitioningDelegate>
 
 @property (nonatomic, weak) LFCollectionView *collectionView;
+@property (nonatomic, strong) NSMutableArray *datas;
 
 @end
 
@@ -23,6 +25,7 @@
 
 - (void)viewDidLoad {
 	[super viewDidLoad];
+	[self prepareData];
 	LFCollectionView *collectionView = [[LFCollectionView alloc] initWithFrame:[UIScreen mainScreen].bounds];
 	collectionView.dataSource = self;
 	collectionView.actionDelegate = self;
@@ -33,50 +36,63 @@
 - (void)didReceiveMemoryWarning {
 	[super didReceiveMemoryWarning];
 	// Dispose of any resources that can be recreated.
-//	UITableView
+}
+
+- (void)prepareData {
+	NSMutableArray *datas = [NSMutableArray array];
+	for (int i = 0; i < 50; i++) {
+		SampleData *data = [SampleData new];
+		data.text = @(i).stringValue;
+		data.type = i % 5 == 0;
+		if (i % 2 == 0) {
+			data.height = 66.f;
+		} else {
+			data.height = 44.f;
+		}
+		[datas addObject:data];
+	}
+	self.datas = datas;
 }
 
 #pragma mark - LFCollectionViewDataSource
 
 - (NSInteger)numberOfItemsInCollectionView:(LFCollectionView *)collectionView {
-	return 50;
+	return self.datas.count;
 }
 
 - (LFCollectionViewCell *)collectionView:(LFCollectionView *)collectionView cellForItemAtIndex:(NSUInteger)index {
+	SampleData *data = self.datas[index];
 	NSArray *cellIDs = @[@"ImageCell", @"MapCell"];
-	LFCollectionViewCellType type = index % 5 == 0;
-	NSString *cellID = cellIDs[type];
+	NSString *cellID = cellIDs[data.type];
 	LFCollectionViewCell *cell = [collectionView dequeueReusableCellWithIdentifier:cellID];
 	if (!cell) {
-		cell = [LFCollectionViewCell cellWithType:type];
+		cell = [LFCollectionViewCell cellWithType:(NSUInteger)data.type];
 		cell.identifier = cellID;
 	}
-	if (type == LFCollectionViewCellTypeImage) {
+	if (cell.type == LFCollectionViewCellTypeImage) {
 		cell.imageView.image = [UIImage imageNamed:@"kitten"];
 	}
-	cell.textLabel.text = @(index).stringValue;
+	cell.textLabel.text = data.text;
 	return cell;
 }
 
 - (CGFloat)collectionView:(LFCollectionView *)collectionView heightForItemAtIndex:(NSUInteger)index {
-	if (index % 2 == 0) {
-		return 66.f;
-	} else {
-		return 44.f;
-	}
+	SampleData *data = self.datas[index];
+	return data.height;
 }
 
 #pragma mark - LFCollectionViewDelegate
 
 - (void)collectionView:(LFCollectionView *)collectionView didSelectItemAtIndex:(NSUInteger)index {
+	SampleData *data = self.datas[index];
 	DetailViewController *detailViewController = [DetailViewController new];
-	detailViewController.isMapView = self.collectionView.selectedCell.type == LFCollectionViewCellTypeMap;
+	detailViewController.isMapView = data.type == SampleDataTypeMap;
 	detailViewController.transitioningDelegate = self;
 	[self presentViewController:detailViewController animated:YES completion:nil];
 }
 
 - (void)collectionView:(LFCollectionView *)collectionView didDeleteItemAtIndex:(NSUInteger)index {
-	
+	[self.datas removeObjectAtIndex:index];
 }
 
 #pragma mark - LFZoomTransitionProtocol
@@ -101,6 +117,8 @@
 			break;
 	}
 }
+
+#pragma mark - Transition helper
 
 - (CGRect)convertedFrameOfView:(UIView *)view {
 	return [view convertRect:view.frame toView:self.view];

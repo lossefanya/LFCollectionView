@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		B1B2E8081B86093D0096657F /* LFZoomTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = B1B2E8071B86093D0096657F /* LFZoomTransition.m */; };
 		B1B2E80B1B8612310096657F /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B1B2E80A1B8612310096657F /* DetailViewController.m */; };
+		B1B2E80E1B866FEA0096657F /* SampleData.m in Sources */ = {isa = PBXBuildFile; fileRef = B1B2E80D1B866FEA0096657F /* SampleData.m */; };
 		B1FD65C81B85393100B4A068 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B1FD65C71B85393100B4A068 /* main.m */; };
 		B1FD65CB1B85393100B4A068 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B1FD65CA1B85393100B4A068 /* AppDelegate.m */; };
 		B1FD65CE1B85393100B4A068 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B1FD65CD1B85393100B4A068 /* ViewController.m */; };
@@ -37,6 +38,8 @@
 		B1B2E8071B86093D0096657F /* LFZoomTransition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LFZoomTransition.m; path = LFZoomTransition/LFZoomTransition.m; sourceTree = "<group>"; };
 		B1B2E8091B8612310096657F /* DetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailViewController.h; sourceTree = "<group>"; };
 		B1B2E80A1B8612310096657F /* DetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailViewController.m; sourceTree = "<group>"; };
+		B1B2E80C1B866FEA0096657F /* SampleData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SampleData.h; sourceTree = "<group>"; };
+		B1B2E80D1B866FEA0096657F /* SampleData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SampleData.m; sourceTree = "<group>"; };
 		B1FD65C21B85393100B4A068 /* LFCollectionView.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LFCollectionView.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B1FD65C61B85393100B4A068 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B1FD65C71B85393100B4A068 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -163,6 +166,8 @@
 				B1FD65CD1B85393100B4A068 /* ViewController.m */,
 				B1B2E8091B8612310096657F /* DetailViewController.h */,
 				B1B2E80A1B8612310096657F /* DetailViewController.m */,
+				B1B2E80C1B866FEA0096657F /* SampleData.h */,
+				B1B2E80D1B866FEA0096657F /* SampleData.m */,
 				B1FD65CF1B85393100B4A068 /* Main.storyboard */,
 				B1FD65D21B85393100B4A068 /* Images.xcassets */,
 				B1FD65D41B85393100B4A068 /* LaunchScreen.xib */,
@@ -274,6 +279,7 @@
 				B1FD65CE1B85393100B4A068 /* ViewController.m in Sources */,
 				B1FD65CB1B85393100B4A068 /* AppDelegate.m in Sources */,
 				B1FD65EF1B8539C200B4A068 /* LFCollectionView.m in Sources */,
+				B1B2E80E1B866FEA0096657F /* SampleData.m in Sources */,
 				B1B2E8081B86093D0096657F /* LFZoomTransition.m in Sources */,
 				B1FD65F21B8539DC00B4A068 /* LFCollectionViewCell.m in Sources */,
 				B1FD65C81B85393100B4A068 /* main.m in Sources */,

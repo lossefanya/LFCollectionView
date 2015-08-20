@@ -48,7 +48,6 @@
 // Used by the delegate to acquire an already allocated cell.
 - (LFCollectionViewCell *)dequeueReusableCellWithIdentifier:(NSString *)identifier;
 
-
 // Called when the user touches delete button.
 - (void)deleteCell:(LFCollectionViewCell *)cell;
 
