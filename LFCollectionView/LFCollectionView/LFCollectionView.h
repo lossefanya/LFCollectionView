@@ -14,7 +14,7 @@
 @protocol LFCollectionViewDelegate <UIScrollViewDelegate>
 @optional
 
-- (void)collectionView:(LFCollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath;
+- (void)collectionView:(LFCollectionView *)collectionView didSelectItemAtIndex:(NSUInteger)index;
 
 @end
 

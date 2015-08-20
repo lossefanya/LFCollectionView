@@ -40,31 +40,19 @@
 }
 
 - (LFCollectionViewCell *)collectionView:(LFCollectionView *)collectionView cellForItemAtIndex:(NSUInteger)index {
-	if (index % 2 == 0) {
-		LFCollectionViewCell *cell = [collectionView dequeueReusableCellWithIdentifier:@"MapCell"];
-		if (!cell) {
-			cell = [LFCollectionViewCell cellWithType:LFCollectionViewCellTypeMap];
-			cell.identifier = @"MapCell";
-			cell.backgroundColor = [UIColor redColor];
-			
-			UIView *line = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 1)];
-			line.backgroundColor = [UIColor lightGrayColor];
-			[cell addSubview:line];
-		}
-		return cell;
-	} else {
-		LFCollectionViewCell *cell = [collectionView dequeueReusableCellWithIdentifier:@"ImageCell"];
-		if (!cell) {
-			cell = [LFCollectionViewCell cellWithType:LFCollectionViewCellTypeImage];
-			cell.identifier = @"ImageCell";
-			cell.backgroundColor = [UIColor yellowColor];
-			
-			UIView *line = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 1)];
-			line.backgroundColor = [UIColor blackColor];
-			[cell addSubview:line];
-		}
-		return cell;
+	NSArray *cellIDs = @[@"ImageCell", @"MapCell"];
+	LFCollectionViewCellType type = index % 2 == 0;
+	NSString *cellID = cellIDs[type];
+	LFCollectionViewCell *cell = [collectionView dequeueReusableCellWithIdentifier:cellID];
+	if (!cell) {
+		cell = [LFCollectionViewCell cellWithType:type];
+		cell.identifier = cellID;
 	}
+	if (type == LFCollectionViewCellTypeImage) {
+		cell.imageView.image = [UIImage imageNamed:@"kitten"];
+	}
+	cell.textLabel.text = @(index).stringValue;
+	return cell;
 }
 
 - (CGFloat)collectionView:(LFCollectionView *)collectionView heightForItemAtIndex:(NSUInteger)index {
@@ -73,6 +61,12 @@
 	} else {
 		return 44.f;
 	}
+}
+
+#pragma mark - LFCollectionViewDelegate
+
+- (void)collectionView:(LFCollectionView *)collectionView didSelectItemAtIndex:(NSUInteger)index {
+	NSLog(@"%d", index);
 }
 
 @end

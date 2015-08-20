@@ -43,6 +43,8 @@
 - (void)initialize {
 	self.usingCells = [NSMutableSet set];
 	self.reusableCells = [NSMutableSet set];
+	UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(didSelectCell:)];
+	[self addGestureRecognizer:tap];
 }
 
 #pragma mark - Populate cells
@@ -52,7 +54,6 @@
 	NSInteger number = [self.dataSource numberOfItemsInCollectionView:self];
 	CGFloat height = 0;
 	for (NSUInteger i = 0; i < number; i++) {
-		//[self.dataSource sizeForItemsInCollectionView:self];
 		height += [self.dataSource collectionView:self heightForItemAtIndex:i];
 	}
 	self.contentSize = CGSizeMake(self.frame.size.width, height);
@@ -70,7 +71,7 @@
 - (void)layoutSubviews {
 	//Q
 	[self.usingCells enumerateObjectsUsingBlock:^(LFCollectionViewCell *cell, BOOL *stop) {
-		CGRect area = CGRectMake(0, CGRectGetMinY(self.bounds) - CGRectGetHeight(self.bounds) * .6f, CGRectGetWidth(self.bounds), CGRectGetHeight(self.bounds) * 2);
+		CGRect area = CGRectMake(0, CGRectGetMinY(self.bounds) - CGRectGetHeight(self.bounds) * .5f, CGRectGetWidth(self.bounds), CGRectGetHeight(self.bounds) * 1.6f);
 		if (!CGRectIntersectsRect(cell.frame, area)) {
 			[self queueReusableCell:cell];
 			[cell removeFromSuperview];
@@ -81,7 +82,10 @@
 	//DQ
 	//find out index
 	NSUInteger first = [self indexOfPosition:CGRectGetMinY(self.bounds)];
-	NSUInteger last = [self indexOfPosition:CGRectGetMaxY(self.bounds) + CGRectGetHeight(self.bounds) * .4f];
+	NSUInteger last = [self indexOfPosition:CGRectGetMaxY(self.bounds) + CGRectGetHeight(self.bounds) * .1f];
+	if (last == NSUIntegerMax) {
+		last = [self.dataSource numberOfItemsInCollectionView:self];
+	}
 	for (NSUInteger i = first; i < last; ++i) {
 		LFCollectionViewCell *cell = [self cellOfPosition:[self positionOfIndex:i]];
 		if (!cell) {
@@ -122,7 +126,7 @@
 			return i;
 		}
 	}
-	return 0;
+	return NSUIntegerMax;
 }
 
 - (void)queueReusableCell:(LFCollectionViewCell *)cell {
@@ -145,5 +149,13 @@
 }
 
 #pragma mark - Handling selection
+
+- (void)didSelectCell:(UITapGestureRecognizer *)tap {
+	CGPoint location = [tap locationInView:self];
+	NSInteger index = [self indexOfPosition:location.y];
+	if (index != NSUIntegerMax) {
+		[self.actionDelegate collectionView:self didSelectItemAtIndex:index];
+	}
+}
 
 @end

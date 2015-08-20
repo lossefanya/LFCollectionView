@@ -11,7 +11,7 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
-                <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="l1l-k1-spW">
+                <mapView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" mapType="standard" zoomEnabled="NO" scrollEnabled="NO" rotateEnabled="NO" pitchEnabled="NO" showsBuildings="NO" showsPointsOfInterest="NO" translatesAutoresizingMaskIntoConstraints="NO" id="l1l-k1-spW">
                     <rect key="frame" x="0.0" y="0.0" width="44" height="44"/>
                     <constraints>
                         <constraint firstAttribute="width" secondItem="l1l-k1-spW" secondAttribute="height" multiplier="1:1" id="qvk-RM-XAl"/>
