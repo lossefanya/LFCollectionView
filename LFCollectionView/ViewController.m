@@ -69,10 +69,6 @@
 #pragma mark - LFCollectionViewDelegate
 
 - (void)collectionView:(LFCollectionView *)collectionView didSelectItemAtIndex:(NSUInteger)index {
-	NSLog(@"%lu", (unsigned long)index);
-	
-	//TODO: animate transition
-	
 	DetailViewController *detailViewController = [DetailViewController new];
 	detailViewController.isMapView = self.collectionView.selectedCell.type == LFCollectionViewCellTypeMap;
 	detailViewController.transitioningDelegate = self;
@@ -91,7 +87,8 @@
 			break;
 		}
 		case LFCollectionViewCellTypeMap:{
-			MKMapView *mapView = [[MKMapView alloc] initWithFrame:[self convertedFrameOfView:cell.mapView]];
+			UIImageView *mapView = [[UIImageView alloc] initWithFrame:[self convertedFrameOfView:cell.mapView]];
+			mapView.image = [self imageWithView:cell.mapView];
 			return mapView;
 			break;
 		}
@@ -105,16 +102,28 @@
 	return [view convertRect:view.frame toView:self.view];
 }
 
+- (UIImage *)imageWithView:(UIView *)view {
+	UIGraphicsBeginImageContextWithOptions(view.bounds.size, view.opaque, 0.0);
+	[view.layer renderInContext:UIGraphicsGetCurrentContext()];
+	UIImage * img = UIGraphicsGetImageFromCurrentImageContext();
+	UIGraphicsEndImageContext();
+	return img;
+}
+
 #pragma mark - UIViewControllerTransitioningDelegate
 
 - (id <UIViewControllerAnimatedTransitioning>)animationControllerForPresentedController:(UIViewController *)presented
 																  presentingController:(UIViewController *)presenting
 																	  sourceController:(UIViewController *)source {
-	return [LFZoomTransition zoomTransitionWithStart:source finish:presented];
+	LFZoomTransition *zoom = [LFZoomTransition zoomTransitionWithStart:source finish:presented];
+	zoom.backgroundColor = [UIColor whiteColor];
+	return zoom;
 }
 
 - (id <UIViewControllerAnimatedTransitioning>)animationControllerForDismissedController:(UIViewController *)dismissed {
-	return [LFZoomTransition zoomTransitionWithStart:dismissed finish:self];
+	LFZoomTransition *zoom = [LFZoomTransition zoomTransitionWithStart:dismissed finish:self];
+	zoom.backgroundColor = [UIColor whiteColor];
+	return zoom;
 }
 
 @end

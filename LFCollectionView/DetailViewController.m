@@ -35,6 +35,7 @@
 	CGRect screen = [UIScreen mainScreen].bounds;
 	
 	UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, screen.size.width, screen.size.width)];
+	imageView.image = [UIImage imageNamed:@"kitten"];
 	imageView.center = CGPointMake(CGRectGetMidX(screen), CGRectGetMidY(screen));
 	[self.view addSubview:imageView];
 	self.imageView = imageView;
@@ -43,6 +44,8 @@
 	mapView.center = imageView.center;
 	[self.view addSubview:mapView];
 	self.mapView = mapView;
+	
+	self.isMapView = self.isMapView;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -53,15 +56,17 @@
 - (void)setIsMapView:(BOOL)isMapView {
 	_isMapView = isMapView;
 	if (isMapView) {
-		[self.imageView removeFromSuperview];
+		self.imageView.hidden = YES;
 	} else {
-		[self.mapView removeFromSuperview];
+		self.mapView.hidden = YES;
 	}
 }
 
 - (void)close {
 	[self dismissViewControllerAnimated:YES completion:nil];
 }
+
+#pragma mark - LFZoomTransitionProtocol
 
 - (UIView *)zoomTransitionView {
 	if (!self.isMapView) {
@@ -70,15 +75,5 @@
 		return self.mapView;
 	}
 }
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

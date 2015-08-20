@@ -20,6 +20,7 @@
 
 @property (nonatomic, weak) id <LFZoomTransitionProtocol> startingTransition;
 @property (nonatomic, weak) id <LFZoomTransitionProtocol> finishingTransition;
+@property (nonatomic, strong) UIColor *backgroundColor;
 
 + (LFZoomTransition *)zoomTransitionWithStart:(id)start finish:(id)finish;
 

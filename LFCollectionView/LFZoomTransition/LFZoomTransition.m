@@ -21,14 +21,14 @@
 }
 
 - (NSTimeInterval)transitionDuration:(id<UIViewControllerContextTransitioning>)transitionContext {
-	return .4;
+	return .6;
 }
 
 - (void)animateTransition:(id<UIViewControllerContextTransitioning>)transitionContext {
-	//TODO: animate transition
 	UIViewController *fromVC = [transitionContext viewControllerForKey:UITransitionContextFromViewControllerKey];
 	UIViewController *toVC = [transitionContext viewControllerForKey:UITransitionContextToViewControllerKey];
 	UIView *containerView = [transitionContext containerView];
+	containerView.backgroundColor = self.backgroundColor;
 	[containerView addSubview:fromVC.view];
 	[containerView addSubview:toVC.view];
 	toVC.view.alpha = 0;
@@ -36,12 +36,17 @@
 	UIView *transitioningView = self.startingTransition.zoomTransitionView;
 	[containerView addSubview:transitioningView];
 	
-	[UIView animateWithDuration:[self transitionDuration:transitionContext] animations:^{
+	[UIView animateWithDuration:.4 animations:^{
 		fromVC.view.alpha = 0;
-		toVC.view.alpha = 1;
 		transitioningView.frame = self.finishingTransition.zoomTransitionView.frame;
 	} completion:^(BOOL finished) {
-		[transitionContext completeTransition:![transitionContext transitionWasCancelled]];
+		[UIView animateWithDuration:.2 animations:^{
+			toVC.view.alpha = 1;
+			transitioningView.alpha = 0;
+		} completion:^(BOOL finished) {
+			[transitioningView removeFromSuperview];
+			[transitionContext completeTransition:![transitionContext transitionWasCancelled]];
+		}];
 	}];
 }
 
