@@ -23,16 +23,16 @@
 
 - (NSInteger)numberOfItemsInCollectionView:(LFCollectionView *)collectionView;
 - (LFCollectionViewCell *)collectionView:(LFCollectionView *)collectionView cellForItemAtIndex:(NSUInteger)index;
-//- (CGSize)sizeForItemsInCollectionView:(LFCollectionView *)collectionView;
 - (CGFloat)collectionView:(LFCollectionView *)collectionView heightForItemAtIndex:(NSUInteger)index;
 
 @end
 
 @interface LFCollectionView : UIScrollView
 
-@property (nonatomic, assign) id <LFCollectionViewDelegate> delegate;
+@property (nonatomic, assign) id <LFCollectionViewDelegate> actionDelegate;
 @property (nonatomic, assign) id <LFCollectionViewDataSource> dataSource;
 
 - (void)reloadData;
+- (LFCollectionViewCell *)dequeueReusableCellWithIdentifier:(NSString *)identifier;
 
 @end

@@ -18,6 +18,8 @@
 
 @implementation LFCollectionView
 
+#pragma mark - Initializers
+
 - (id)init {
 	return [self initWithFrame:CGRectZero];
 }
@@ -42,6 +44,8 @@
 	self.usingCells = [NSMutableSet set];
 	self.reusableCells = [NSMutableSet set];
 }
+
+#pragma mark - Populate cells
 
 - (void)reloadData {
 	//calculate content size
@@ -74,20 +78,71 @@
 	[self.usingCells minusSet:self.reusableCells];
 	
 	//DQ
+	//find out index
+	NSUInteger first = [self indexOfPosition:CGRectGetMinY(self.bounds)];
+	NSUInteger last = [self indexOfPosition:CGRectGetMaxY(self.bounds) - 1];
+	for (NSUInteger i = first; i < last; ++i) {
+		LFCollectionViewCell *cell = [self cellOfPosition:[self positionOfIndex:i]];
+		if (!cell) {
+			LFCollectionViewCell *newCell = [self.dataSource collectionView:self cellForItemAtIndex:i];
+			newCell.frame = CGRectMake(0, [self positionOfIndex:i], self.frame.size.width, [self.dataSource collectionView:self heightForItemAtIndex:i]);
+			[self addSubview:newCell];
+			[self.usingCells addObject:newCell];
+		}
+	}
 	
-	
+}
+
+- (LFCollectionViewCell *)cellOfPosition:(CGFloat)y {
+	__block LFCollectionViewCell *cell = nil;
+	[self.usingCells enumerateObjectsUsingBlock:^(LFCollectionViewCell *aCell, BOOL *stop) {
+		if (aCell.frame.origin.y == y) {
+			cell = aCell;
+			*stop = YES;
+		}
+	}];
+	return cell;
+}
+
+- (CGFloat)positionOfIndex:(NSUInteger)index {
+	CGFloat height = 0;
+	for (NSUInteger i = 0; i < index; i++) {
+		height += [self.dataSource collectionView:self heightForItemAtIndex:i];
+	}
+	return height;
+}
+
+- (NSUInteger)indexOfPosition:(CGFloat)y {
+	NSInteger number = [self.dataSource numberOfItemsInCollectionView:self];
+	CGFloat height = 0;
+	for (NSUInteger i = 0; i < number; i++) {
+		height += [self.dataSource collectionView:self heightForItemAtIndex:i];
+		if (height > y) {
+			return i;
+		}
+	}
+	return 0;
 }
 
 - (void)queueReusableCell:(LFCollectionViewCell *)cell {
 	[self.reusableCells addObject:cell];
 }
 
-- (LFCollectionViewCell *)dequeueReusableCell {
-	LFCollectionViewCell *cell = [self.reusableCells anyObject];
+- (LFCollectionViewCell *)dequeueReusableCellWithIdentifier:(NSString *)identifier {
+	__block LFCollectionViewCell *cell = nil;
+	[self.reusableCells enumerateObjectsUsingBlock:^(LFCollectionViewCell *aCell, BOOL *stop) {
+		if ([aCell.identifier isEqualToString:identifier]) {
+			cell = aCell;
+			*stop = YES;
+		}
+	}];
+
 	if (cell) {
 		[self.reusableCells removeObject:cell];
 	}
 	return cell;
 }
+
+#pragma mark - Handling selection
 
 @end

@@ -10,4 +10,6 @@
 
 @interface LFCollectionViewCell : UIView
 
+@property (nonatomic, strong) NSString *identifier;
+
 @end
